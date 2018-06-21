@@ -41,9 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onFinish() {
                     // when conter is finished(after 10 sec)
 
-                    timerTextView.setText("0:00");
                     //playsound
-
+                    resettimer();
                     MediaPlayer mplayer = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
                     mplayer.start();
 
@@ -51,11 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }.start();
 
         }else{                               // Stoping the timer not pausing
-            button.setText("Start");
-            counterIsActive=false;
-            countDownTimer.cancel();
-
-            timerSeekbar.setEnabled(true);
+           resettimer();
         }
 
     }
@@ -119,5 +114,14 @@ public class MainActivity extends AppCompatActivity {
         int seconds= secondsLeft-minutes*60;
         timerTextView.setText(Integer.toString(minutes)+":"+Integer.toString(seconds));
     }
+
+    public void resettimer(){
+        button.setText("Start");
+        counterIsActive=false;
+        countDownTimer.cancel();
+
+        timerSeekbar.setEnabled(true);
+    }
+
 
 }
