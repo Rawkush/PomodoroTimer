@@ -14,8 +14,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SeekBar timerSeekbar=(SeekBar) findViewById(R.id.seekBar);
-        timerSeekbar.setMax(600);
-        timerSeekbar.setProgress(30);
+        timerSeekbar.setMax(600);    // max time duration is 10 minutes i.e 600 seconds
+        timerSeekbar.setProgress(30); // intially setting timer at 30 sec
+        timerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
 
 
@@ -28,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onTick(long millisUntilFinished) {
 
                     // after every second
+
 
                 }
                 @Override
