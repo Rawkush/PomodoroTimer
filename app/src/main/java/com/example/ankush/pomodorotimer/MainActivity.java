@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,12 +14,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SeekBar timerSeekbar=(SeekBar) findViewById(R.id.seekBar);
+        final SeekBar timerSeekbar=(SeekBar) findViewById(R.id.seekBar);
+        final TextView timerTextView= (TextView)findViewById(R.id.timertextView);
+
         timerSeekbar.setMax(600);    // max time duration is 10 minutes i.e 600 seconds
         timerSeekbar.setProgress(30); // intially setting timer at 30 sec
         timerSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+                int minutes =(int) progress/ 60;
+                int seconds= progress-minutes*60;
+                timerTextView.setText(Integer.toString(minutes)+":"+Integer.toString(seconds));
 
             }
 
