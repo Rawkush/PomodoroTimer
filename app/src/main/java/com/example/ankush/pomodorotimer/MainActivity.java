@@ -1,10 +1,12 @@
 package com.example.ankush.pomodorotimer;
 
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -12,28 +14,49 @@ public class MainActivity extends AppCompatActivity {
 
     SeekBar timerSeekbar;
     TextView timerTextView;
+    Button button;
+    boolean counterIsActive=false;
+    CountDownTimer countDownTimer;
 
     public void controlTimer(View view){
 
-        new CountDownTimer(timerSeekbar.getProgress()*1000 +100,1000){  // first param is timer till which to count
-            // second param is in what intervals should it count
-            @Override
-            public void onTick(long millisUntilFinished) {
+        if(counterIsActive==false) {
+            counterIsActive = true;
+            timerSeekbar.setEnabled(false);
+            button.setText("pause");
 
-                // after every second
+          countDownTimer=  new CountDownTimer(timerSeekbar.getProgress() * 1000 + 100, 1000) {  // first param is timer till which to count
+                // second param is in what intervals should it count
+                @Override
+                public void onTick(long millisUntilFinished) {
 
-                updateTime((int) (millisUntilFinished/1000));
+                    // after every second
 
-
-            }
-            @Override
-            public void onFinish() {
-                // when conter is finished(after 10 sec)
-                //playsound
+                    updateTime((int) (millisUntilFinished / 1000));
 
 
-            }
-        }.start();
+                }
+
+                @Override
+                public void onFinish() {
+                    // when conter is finished(after 10 sec)
+
+                    timerTextView.setText("0:00");
+                    //playsound
+
+                    MediaPlayer mplayer = MediaPlayer.create(getApplicationContext(), R.raw.airhorn);
+                    mplayer.start();
+
+                }
+            }.start();
+
+        }else{                               // Stoping the timer not pausing
+            button.setText("Start");
+            counterIsActive=false;
+            countDownTimer.cancel();
+
+            timerSeekbar.setEnabled(true);
+        }
 
     }
 
@@ -44,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         timerSeekbar=(SeekBar) findViewById(R.id.seekBar);
         timerTextView= (TextView)findViewById(R.id.timertextView);
+        button=(Button)findViewById(R.id.button);
+
 
         timerSeekbar.setMax(600);    // max time duration is 10 minutes i.e 600 seconds
         timerSeekbar.setProgress(30); // intially setting timer at 30 sec
