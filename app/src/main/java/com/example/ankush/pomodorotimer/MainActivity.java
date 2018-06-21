@@ -10,14 +10,19 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    SeekBar timerSeekbar;
+    TextView timerTextView;
+
     public void controlTimer(View view){
 
-        new CountDownTimer(10000,1000){  // first param is timer till which to count
+        new CountDownTimer(timerSeekbar.getProgress()*1000,1000){  // first param is timer till which to count
             // second param is in what intervals should it count
             @Override
             public void onTick(long millisUntilFinished) {
 
                 // after every second
+
+                updateTime((int) (millisUntilFinished/1000));
 
 
             }
@@ -34,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final SeekBar timerSeekbar=(SeekBar) findViewById(R.id.seekBar);
-        final TextView timerTextView= (TextView)findViewById(R.id.timertextView);
+        timerSeekbar=(SeekBar) findViewById(R.id.seekBar);
+        timerTextView= (TextView)findViewById(R.id.timertextView);
 
         timerSeekbar.setMax(600);    // max time duration is 10 minutes i.e 600 seconds
         timerSeekbar.setProgress(30); // intially setting timer at 30 sec
@@ -43,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                int minutes =(int) progress/ 60;
-                int seconds= progress-minutes*60;
-                timerTextView.setText(Integer.toString(minutes)+":"+Integer.toString(seconds));
-
+            updateTime(progress);
             }
 
             @Override
@@ -82,5 +84,12 @@ public class MainActivity extends AppCompatActivity {
     */
     }
 
+
+    public void updateTime(int secondsLeft){
+
+        int minutes =(int) secondsLeft/ 60;
+        int seconds= secondsLeft-minutes*60;
+        timerTextView.setText(Integer.toString(minutes)+":"+Integer.toString(seconds));
+    }
 
 }
