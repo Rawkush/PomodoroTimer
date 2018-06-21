@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void controlTimer(View view){
 
-        new CountDownTimer(timerSeekbar.getProgress()*1000,1000){  // first param is timer till which to count
+        new CountDownTimer(timerSeekbar.getProgress()*1000 +100,1000){  // first param is timer till which to count
             // second param is in what intervals should it count
             @Override
             public void onTick(long millisUntilFinished) {
@@ -29,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 // when conter is finished(after 10 sec)
+                //playsound
+
+
             }
         }.start();
 
