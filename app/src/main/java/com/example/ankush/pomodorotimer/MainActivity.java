@@ -10,8 +10,18 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Handler handler= new Handler(); // it allows delaying
+        final Handler handler= new Handler(); // it allows delaying
+        Runnable run=new Runnable() {  //chunk of code that handler handles is called runnable
+            @Override
+            public void run() {
+                // code to be run every second or afteer a period of time
 
+                handler.postDelayed(this,1000);
+
+            }
+        };
+
+        handler.post(run); // ruun
     }
 
 
