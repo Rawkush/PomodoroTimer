@@ -4,10 +4,30 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    public void controlTimer(View view){
+
+        new CountDownTimer(10000,1000){  // first param is timer till which to count
+            // second param is in what intervals should it count
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+                // after every second
+
+
+            }
+            @Override
+            public void onFinish() {
+                // when conter is finished(after 10 sec)
+            }
+        }.start();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,20 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
        // using alternative method
 
-            new CountDownTimer(10000,1000){  // first param is timer till which to count
-                                                    // second param is in what intervals should it count
-                @Override
-                public void onTick(long millisUntilFinished) {
-
-                    // after every second
-
-
-                }
-                @Override
-                public void onFinish() {
-                    // when conter is finished(after 10 sec)
-                }
-            }.start();
        /*
         final Handler handler= new Handler(); // it allows delaying
         Runnable run=new Runnable() {  //chunk of code that handler handles is called runnable
