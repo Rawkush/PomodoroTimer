@@ -8,8 +8,7 @@
    ![GitHub watchers](https://img.shields.io/github/watchers/rawkush/PomodoroTimer?style=social) <br /> ![GitHub all releases](https://img.shields.io/github/downloads/rawkush/PomodoroTimer/total?style=plastic) <br />
 
    ![GitHub](https://img.shields.io/github/license/rawkush/PomodoroTimer?style=plastic)
-   [![HitCount](http://hits.dwyl.com/rawkush/PomodoroTimer.svg)](http://hits.dwyl.com/rawkush/PomodoroTimer)
-   
+![ViewCount](https://views.whatilearened.today/views/github/rawkush/pomodoro.svg)   
 
 A timer app made for the students or people who needs a timer reminder after a certain period f time
 generally used by the students studying for entrance exam to manage time studying time to increase the efficiency.
